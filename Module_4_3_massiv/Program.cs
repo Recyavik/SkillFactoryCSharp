@@ -5,8 +5,8 @@
         static void Main(string[] args)
         {
             //Размерность массива 
-            var arr = new int[] { 1, 2, 3, 4 };
-            var l = arr.Length;
+            var arr22 = new int[] { 1, 2, 3, 4 };
+            var l = arr22.Length;
 
             //Разные виды инициализации массива
             int[] arr1 = new int[4] { 1, 2, 3, 5 };
@@ -56,6 +56,25 @@
                     Console.Write(array[i, j] + " ");
                 }
                 Console.WriteLine();
+            }
+
+            var arr = new int[] { 5, 6, 8, 1, 3, 4 };
+            int buffer;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                for (int j = i + 1; j  < arr.Length; j++)
+                {
+                    if (arr[i] < arr[j])
+                    {
+                        buffer = arr[i];
+                        arr[i] = arr[j];
+                        arr[j] = buffer;
+                    }
+                }
+            }
+            foreach (var item in arr)
+            {
+                Console.Write(item);
             }
         }
     }
