@@ -21,6 +21,18 @@
                 j++;
             }
 
+            int z = 1;
+            while (z <= 4) 
+            {
+                Console.WriteLine(z);
+                z++;
+            }
+
+            while (z >= 1)
+            {
+                Console.WriteLine(z);
+                z--;
+            }
         }
     }
 }
