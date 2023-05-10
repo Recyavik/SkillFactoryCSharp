@@ -33,6 +33,19 @@
                 Console.WriteLine(z);
                 z--;
             }
+
+            do
+            {
+                Console.WriteLine(z);
+                z++;
+            } while (z != 10);
+
+            do
+            {
+                Console.WriteLine(z);
+                z--;
+            } while (z != 0);
+
         }
     }
 }
