@@ -71,7 +71,48 @@
             {
                 Console.WriteLine("Значение b = {0}", b);
             }
-            Console.ReadKey();
+
+            // Тернарная операция условия
+            a = 6;
+            b = 6;
+
+            if (a == b)
+            {
+                Console.WriteLine("Условие истинно");
+            }
+            else
+            {
+                Console.WriteLine("Условие ложно");
+            }
+
+
+            // Цветной вывод
+            Console.WriteLine("Напишите свой любимый цвет на английском с маленькой буквы");
+
+            var color = Console.ReadLine();
+
+            if (color == "red")
+            {
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Black;
+
+                Console.WriteLine("Your color is red!");
+            }
+
+            else if (color == "green")
+            {
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.Black;
+
+                Console.WriteLine("Your color is green!");
+            }
+            else
+            {
+                Console.BackgroundColor = ConsoleColor.Cyan;
+                Console.ForegroundColor = ConsoleColor.Black;
+
+                Console.WriteLine("Your color is cyan!");
+            }
         }
     }
 }
