@@ -2,7 +2,7 @@
 {
     internal class Program
     {
-        static void ShowColor()
+        static string ShowColor()
         {
             Console.WriteLine("Напишите свой любимый цвет на английском с маленькой буквы");
             var color = Console.ReadLine();
@@ -35,6 +35,7 @@
                     Console.WriteLine("Your color is yellow!");
                     break;
             }
+            return color;
         }
         static void Main(string[] args)
         {
@@ -51,7 +52,7 @@
             Console.WriteLine("Ваше имя: {0}", name);
             Console.WriteLine("Ваш возраст: {0}", age);
 
-            ShowColor();
+            Console.WriteLine(ShowColor());
 
         }
     }
