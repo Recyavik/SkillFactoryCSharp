@@ -44,8 +44,33 @@
             result = !inv;
             Console.WriteLine(result);
 
+            a = 6;
+            b = 6;
 
+            if (a == b)
+            {
+                Console.WriteLine("Условие истинно");
+            }
+            else
+            {
+                Console.WriteLine("Условие ложно");
+            }
 
+            // Вложенные условия
+
+            if (a == b && b > 1)
+            {
+                Console.WriteLine("Условие истинно");
+            }
+
+            else if (b > 10 || b == 7)
+            {
+                Console.WriteLine("Значение b = {0} больше 10 или равно 7", b);
+            }
+            else
+            {
+                Console.WriteLine("Значение b = {0}", b);
+            }
             Console.ReadKey();
         }
     }
