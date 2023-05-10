@@ -95,6 +95,32 @@
                 }
                 Console.WriteLine();
             }
+
+            // Сортировка двухмерного массива
+            int temp;
+            int[,] arrayD = { {8, 7, 1,-5,-6}, {9, 6, 7, 2, 8}, {4, 6, 3, 1, 0} };
+            for (int i = 0; i < arrayD.GetUpperBound(1); i++)
+            {
+                for (int j = 0; j < arrayD.GetUpperBound(0); j++)
+                    for (int k = j+1; i < arrayD.GetUpperBound(1); k++)
+                    {
+                        if (arrayD[i, j] > arrayD[i, k])
+                        {
+                            temp = arrayD[i,k];
+                            arrayD[i,k] = arrayD[i,j];
+                            arrayD[i,j] = temp;
+                        }
+                    }
+             }
+            for (int i = 0; i < array.GetUpperBound(0) + 1; i++)
+            {
+                for (int j = 0; j < array.GetUpperBound(1) + 1; j++)
+                {
+                    Console.Write(array[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+
         }
     }
 }
