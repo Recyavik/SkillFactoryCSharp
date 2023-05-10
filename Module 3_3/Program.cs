@@ -1,7 +1,10 @@
-﻿string MyName = "Jane";
+﻿using System.Xml.Linq;
+
+string MyName = "Jane";
 byte MyAge = 27;
 bool HaveIApet = true;
 double MyShoeSize = 37.5;
+byte age = 15; 
 
 Console.WriteLine("My name is " + MyName);
 Console.WriteLine("MyAge " + MyAge);
@@ -13,6 +16,14 @@ Console.WriteLine("IntMax {0} ", int.MaxValue);
 
 Console.WriteLine(DayOfWeek.Sunday);
 Console.WriteLine((Semaphore)100);
+Console.WriteLine("\tПривет,\n мир!");
+Console.WriteLine($"Мой возраст {age}");
+
+string name = Console.ReadLine();
+
+Console.WriteLine($"{0}\n {1}\n {2}", name, age, MyShoeSize);
+
+Console.ReadKey();
 
 enum DaysofWeek : byte
 {
