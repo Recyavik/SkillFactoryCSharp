@@ -58,6 +58,8 @@
                 Console.WriteLine();
             }
 
+            
+            // Соритровка массива
             var arr = new int[] { 5, 6, 8, 1, 3, 4 };
             int buffer;
             for (int i = 0; i < arr.Length; i++)
@@ -75,6 +77,23 @@
             foreach (var item in arr)
             {
                 Console.Write(item);
+            }
+
+            Console.WriteLine();
+            // Зубчатый массив 
+            int[][] ar = new int[3][];
+
+            ar[0] = new int[2] { 1, 2 };
+            ar[1] = new int[3] { 1, 2, 3 };
+            ar[2] = new int[5] { 1, 2, 3, 4, 5 };
+
+            foreach (var num in ar)
+            {
+                foreach (var item in num)
+                {
+                    Console.Write(item + " ");
+                }
+                Console.WriteLine();
             }
         }
     }
