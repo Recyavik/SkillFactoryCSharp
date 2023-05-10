@@ -14,7 +14,7 @@
             int[] arr3 = new[] { 1, 2, 3, 5 };
             int[] arr4 = { 1, 2, 3, 5 };
 
-            foreach (int item in arr1) 
+            foreach (int item in arr1)
             {
                 Console.WriteLine(item);
             }
@@ -47,9 +47,16 @@
 
             Console.WriteLine("Последняя буква вашего имени: {0}", name[name.Length - 1]);
 
-            Console.ReadKey();
-
+            int[,] array = { { 1, 2, 3 }, { 5, 6, 7 } };
+            Console.WriteLine(array[0, 0]);
+            for (int i = 0; i < array.GetUpperBound(0)+1; i++)
+            {
+                for (int j = 0; j < array.GetUpperBound(1)+1; j++)
+                {
+                    Console.Write(array[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
         }
-       
     }
 }
