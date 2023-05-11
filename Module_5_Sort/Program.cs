@@ -4,9 +4,32 @@
     {
         static void Main(string[] args)
         {
-            int[,] arr = { { -5, 6, 9, 1, 2, -3}, { -8, 8, 1, 1, 2, -3} };
+            var arr = new int[10, 10];
+            arr = GetArrayConsole(3, 2);
+            ShowArray(arr,true);
+            
+        }
+        static int[,] GetArrayConsole(int n, int m) 
+        { 
+            var arr = new int[n, m];
+            for (int i = 0; i <= arr.GetUpperBound(0); i++)
+            {
+                for (int j = 0; j <= arr.GetUpperBound(1); j++)
+                {
+                    Console.Write("Введите [{0},{1}] элемент массива: ", i + 1, j + 1);
+                    arr[i, j] = int.Parse(Console.ReadLine());
+                }
+            }
+            ShowArray(arr);
+            return arr;
+        }
 
-            SortComplexArray(arr);
+        static void ShowArray(int[,] arr, bool isSort = false)
+        {
+            if (isSort)
+            {
+                SortComplexArray(arr);
+            }
             for (int i = 0; i <= arr.GetUpperBound(0); i++)
             {
                 for (int j = 0; j <= arr.GetUpperBound(1); j++)
@@ -14,6 +37,7 @@
                     Console.WriteLine();
             }
         }
+
         static void SortComplexArray(int[,] arr)
         {
             int temp;
