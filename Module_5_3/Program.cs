@@ -6,13 +6,13 @@
         {
             var arr = new int[] { 1, 2, 3 };
             var data = 5;
-            BigDataOperation(arr, data);
+            BigDataOperation(arr, ref data);
 
             Console.WriteLine(arr[0]);
             Console.WriteLine(data);
         }
 
-        private static void BigDataOperation(int[] arr, int data)
+        private static void BigDataOperation(int[] arr, ref int data)
         {
             arr[0] = 4;
             data = 0;
