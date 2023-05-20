@@ -59,6 +59,5 @@ static int[] SortArrayAsc(int[] array)
             }
         }
     }
-
     return newArray;
 }
