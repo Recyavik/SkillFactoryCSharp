@@ -6,6 +6,7 @@
         {
             var num = 1;
             Matreshka(num);
+            Console.WriteLine(num);
             Console.ReadKey();
         }
         static int Matreshka(int num)
