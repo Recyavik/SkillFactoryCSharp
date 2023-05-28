@@ -42,6 +42,14 @@
         {
             Console.WriteLine("Это {0} по кличке {1}, ему {2}", type, name, age);
         }
+
+        // Конструктор с указанием всех параметров структуры
+        public Animal(string t, string n, int a) 
+        { 
+            type = t;
+            name = n;
+            age = a;
+        }
     }
     internal class Program
     {
@@ -56,6 +64,15 @@
 
             human = new Human("Дмитрий", 23);
             human.Greetings();
+
+            Animal animal = new Animal();
+            animal = new Animal("Кот", "Барсик", 2);
+            animal.Info();
+
+
+            // Инициализатор
+            Human human1 = new Human { name = "Viktor", age = 25 };
+            human1.Greetings();
 
             Console.ReadKey();
         }
