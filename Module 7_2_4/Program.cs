@@ -59,7 +59,17 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            A a = new A();
+            B b = new B();
+            C c = new C();
+
+            a.Display();    // метод класса A
+            b.Display();    // метод класса B
+            ((A)b).Display();  // метод класса B
+
+            c.Display();    // метод класса C
+            ((A)c).Display();  // метод класса B
+            ((B)c).Display();	// метод класса B
         }
     }
 }
