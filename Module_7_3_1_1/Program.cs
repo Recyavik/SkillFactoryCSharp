@@ -18,6 +18,10 @@
 
     class Cat : FourLeggedAnimal
     {
+        public override void Describe()
+        {
+            Console.WriteLine("Это животное - кошка");
+        }
     }
     internal class Program
     {
