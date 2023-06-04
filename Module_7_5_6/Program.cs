@@ -1,20 +1,33 @@
 ﻿namespace Module_7_5_6
 {
-    static class StringExtensions
+    static class Int
     {
-        public static char GetLastChar(this string source)
+        public static int GetNegative(this int value)
         {
-            return source[source.Length - 1];
+            if (value <= 0) return value;
+            else return value * (-1);
         }
+        public static int GetPositive(this int value)
+        {
+            if (value <= 0) return value * (-1);
+            else return value;
+        }
+
     }
     internal class Program
     {
         static void Main(string[] args)
         {
-            string str = "Hello";
-            Console.WriteLine(str.GetLastChar());
+                int num1 = 7;
+                int num2 = -13;
+                int num3 = 0;
 
-            Console.WriteLine("Строка".GetLastChar());
-        }
+                Console.WriteLine(num1.GetNegative()); //-7
+                Console.WriteLine(num1.GetPositive()); //7
+                Console.WriteLine(num2.GetNegative()); //-13
+                Console.WriteLine(num2.GetPositive()); //13
+                Console.WriteLine(num3.GetNegative()); //0
+                Console.WriteLine(num3.GetPositive()); //0
+            }
     }
 }
