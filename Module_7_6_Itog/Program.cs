@@ -16,7 +16,7 @@ class ListProduct
         for (int i = 0; i < Products.Length; i++)
         {
             strOut = "";
-            strOut = strOut = (i+1).ToString() + ". " + Products[i].Name + ", " +
+            strOut = strOut = (i + 1).ToString() + ". " + Products[i].Name + ", " +
                 Products[i].Price.ToString() + " руб., " + Products[i].Count.ToString() + " " + Products[i].Ed;
             Console.WriteLine(strOut);
         }
@@ -25,12 +25,12 @@ class ListProduct
     {
         Products = Products.Append(product).ToArray();
     }
-    public double GetSumma(ProductClass[] products)
+    public double GetSumma()
     {
         double sum = 0;
-        for (int i = 0; i < products.Length; i++)
+        for (int i = 0; i < Products.Length; i++)
         {
-            sum += products[i].Price * products[i].Count;
+            sum += Products[i].Price * Products[i].Count;
         }
 
         return sum;
@@ -53,12 +53,13 @@ class ProductClass
     }
     public void Display()
     {
-            string strOut = "";
-            strOut = Id.ToString() + ". " +Name + ", " + Price.ToString() + " руб. - " + 
-            Count.ToString() + " " + Ed; 
-            Console.WriteLine(strOut);
-        }
+        string strOut = "";
+        strOut = Id.ToString() + ". " + Name + ", " + Price.ToString() + " руб. - " +
+        Count.ToString() + " " + Ed;
+        Console.WriteLine(strOut);
     }
+}
+
 
 abstract class Delivery
 {
@@ -98,7 +99,7 @@ internal class ShopDelivery : Delivery
     }
 }
 
-class Order<TDelivery,TStruct> where TDelivery : Delivery
+class Order<TDelivery, TStruct> where TDelivery : Delivery
 {
     public TDelivery Delivery;
 
@@ -121,9 +122,12 @@ internal class Program
         ProductClass pr2 = new ProductClass(21, "Кофе", 40.00, 1);
         pr.Display();
         pr2.Display();
-        ListProduct prS = new ListProduct(0);
+        ListProduct prS = new ListProduct(888);
         prS.AppendList(pr);
         prS.AppendList(pr2);
         prS.DisplayList();
+
+        double summa = prS.GetSumma();
+        Console.WriteLine("Заказ №{0}. Сумма к оплате: {1} руб.",prS.Id, summa);
     }
 }
