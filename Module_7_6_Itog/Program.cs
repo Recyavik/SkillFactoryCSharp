@@ -1,4 +1,7 @@
 ﻿
+using System.Xml;
+using static System.Console;
+
 namespace Module_7_6_Itog;
 
 class ListProduct
@@ -8,17 +11,16 @@ class ListProduct
     public ListProduct(int id)
     {
         Id = id;
-        Products = new ProductClass[0];
+        Products = Array.Empty<ProductClass>();
     }
     public void DisplayList()
     {
         string strOut;
         for (int i = 0; i < Products.Length; i++)
         {
-            strOut = "";
-            strOut = strOut = (i + 1).ToString() + ". " + Products[i].Name + ", " +
+            strOut = (i + 1).ToString() + ". " + Products[i].Name + ", " +
                 Products[i].Price.ToString() + " руб., " + Products[i].Count.ToString() + " " + Products[i].Ed;
-            Console.WriteLine(strOut);
+            WriteLine(strOut);
         }
     }
     public void AppendList(ProductClass product)
@@ -61,8 +63,7 @@ class ProductClass
     }
     public void Display()
     {
-        string strOut = "";
-        strOut = Id.ToString() + ". " + Name + ", " + Price.ToString() + " руб. - " +
+        string strOut = Id.ToString() + ". " + Name + ", " + Price.ToString() + " руб. - " +
         Count.ToString() + " " + Ed;
         Console.WriteLine(strOut);
     }
@@ -71,9 +72,9 @@ enum DeliveryType { Home = 0, Point, Shop }
 
 abstract class Delivery
 {
-    public string Address;
-    public string Telephon;
-    public int List;
+    public string? Address;
+    public string? Telephon;
+    public int? List;
     public bool IsStatus { get; set; }
     public DeliveryType DeliveryType { get; set; }
 
@@ -89,13 +90,13 @@ abstract class Delivery
     }
     public void DisplayDelivery()
     {
-        Console.WriteLine("Заказ №{0} тип:{1} по адресу:{2} статус доставки:", List, DeliveryType, Address, IsStatus);
+        Console.WriteLine("Заказ №{0} тип:{1} по адресу:{2} статус доставки: {3}", List, DeliveryType, Address, IsStatus);
     }
 }
 
 class HomeDelivery : Delivery
 {
-    private int NumberFlat;
+    private int? NumberFlat;
     /* ... */
     public HomeDelivery(string adress, string telephon, int order) : base(adress, telephon, order)
     {
@@ -119,7 +120,7 @@ class HomeDelivery : Delivery
 
 class PickPointDelivery : Delivery
 {
-    private int PinCode;
+    private int? PinCode;
     /* ... */
     public PickPointDelivery(string adress, string telephon, int order) : base(adress, telephon, order)
     {
@@ -138,15 +139,17 @@ class PickPointDelivery : Delivery
 
 internal class ShopDelivery : Delivery
 {
-    public string NameMenedger;
+    public string? NameMenedger;
     /* ... */
     public ShopDelivery(string adress, string telephon, int order) : base(adress, telephon, order)
     {
+
     }
     public void Status(string nameMenedger)
     {
         Console.Write("Введите имя менеджера магазина:");
-        NameMenedger = Console.ReadLine();
+        string? NameMenedger = Console.ReadLine();
+        
         if (NameMenedger == nameMenedger)
         {
             DeliveryType = DeliveryType.Shop;
@@ -154,43 +157,25 @@ internal class ShopDelivery : Delivery
         }
     }
 }
-
-class Order<TDelivery, TStruct> where TDelivery : Delivery
-{
-    public TDelivery Delivery;
-
-    public int Number;
-
-    public string Description;
-
-    public void DisplayAddress()
-    {
-        Console.WriteLine(Delivery.Address);
-    }
-
-    // ... Другие поля
-}
 internal class Program
 {
     static void Main(string[] args)
     {
-        ProductClass pr = new ProductClass(14, "Салат", 120.50, 2);
-        ProductClass pr2 = new ProductClass(21, "Кофе", 40.00, 1);
+        ProductClass pr = new(14, "Салат", 120.50, 2);
+        ProductClass pr2 = new(21, "Кофе", 40.00, 1);
         pr.Display();
         pr2.Display();
-        ListProduct prS = new ListProduct(888);
+        var prS = new ListProduct(888);
         prS.AppendList(pr);
         prS.AppendList(pr2);
         prS.DisplayList();
 
         double summa = prS.GetSumma();
-        Console.WriteLine("Заказ №{0}. Сумма к оплате: {1} руб.", prS.Id, summa);
+        WriteLine("Заказ №{0}. Сумма к оплате: {1} руб.", prS.Id, summa);
 
-        HomeDelivery kv15 = new HomeDelivery("ул.Маяковского", "+79027621205", 12);
+        HomeDelivery kv15 = new ("ул.Маяковского", "+79027621205", 12);
         kv15.DisplayDelivery();
         kv15.Status(15);
         kv15.DisplayDelivery();
-
-
     }
 }
