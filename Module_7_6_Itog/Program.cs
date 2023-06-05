@@ -1,6 +1,4 @@
-﻿
-using System.Xml;
-using static System.Console;
+﻿using static System.Console;
 
 namespace Module_7_6_Itog;
 
@@ -108,7 +106,7 @@ class HomeDelivery : Delivery
         if (NumberFlat == numberFlat)
         {
             DeliveryType = DeliveryType.Home;
-            Console.Write("Введите статус 0/1 доставки");
+            Console.Write("Введите статус 0/1 доставки:");
             if (Convert.ToInt32(Console.ReadLine()) == 1)
             {
                 FixIsStatus();
@@ -173,9 +171,19 @@ internal class Program
         double summa = prS.GetSumma();
         WriteLine("Заказ №{0}. Сумма к оплате: {1} руб.", prS.Id, summa);
 
-        HomeDelivery kv15 = new ("ул.Маяковского", "+79027621205", 12);
+        HomeDelivery kv15 = new ("ул.Маяковского", "+79027621205", 15);
         kv15.DisplayDelivery();
         kv15.Status(15);
         kv15.DisplayDelivery();
+
+        PickPointDelivery p2625 = new("ул.Маяковского", "+79027621205", 657);
+        p2625.DisplayDelivery();
+        p2625.Status(2625);
+        p2625.DisplayDelivery();
+
+        ShopDelivery shop = new("ул.Маяковского", "+79027621205", 111);
+        shop.DisplayDelivery();
+        shop.Status("Max");
+        shop.DisplayDelivery();
     }
 }
