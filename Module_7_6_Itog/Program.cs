@@ -3,7 +3,7 @@ namespace Module_7_6_Itog;
 
 class ListProduct
 {
-    public int Id { get; set; }
+    public int Id;
     public ProductClass[] Products;
     public ListProduct(int id)
     {
@@ -51,6 +51,14 @@ class ProductClass
         Count = count;
         Ed = "шт.";
     }
+    public ProductClass(string name, double price)
+    {
+        Id = 0;
+        Name = name;
+        Price = price;
+        Count = 1;
+        Ed = "шт.";
+    }
     public void Display()
     {
         string strOut = "";
@@ -59,13 +67,15 @@ class ProductClass
         Console.WriteLine(strOut);
     }
 }
-
+enum DeliveryType { Home = 0, Point, Shop }
 
 abstract class Delivery
 {
     public string Address;
     public string Telephon;
     public int List;
+    public bool IsStatus { get; set; }
+    public DeliveryType DeliveryType { get; set; }
 
     public Delivery(string adress, string telephon, int order)
     {
@@ -73,29 +83,75 @@ abstract class Delivery
         Telephon = telephon;
         List = order;
     }
+    public void FixIsStatus()
+    {
+        IsStatus = true;
+    }
+    public void DisplayDelivery()
+    {
+        Console.WriteLine("Заказ №{0} тип:{1} по адресу:{2} статус доставки:", List, DeliveryType, Address, IsStatus);
+    }
 }
 
 class HomeDelivery : Delivery
 {
+    private int NumberFlat;
     /* ... */
     public HomeDelivery(string adress, string telephon, int order) : base(adress, telephon, order)
     {
     }
+    public void Status(int numberFlat)
+    {
+        Console.Write("Введите номер квартиры:");
+        NumberFlat = Convert.ToInt32(Console.ReadLine());
+        if (NumberFlat == numberFlat)
+        {
+            DeliveryType = DeliveryType.Home;
+            Console.Write("Введите статус 0/1 доставки");
+            if (Convert.ToInt32(Console.ReadLine()) == 1)
+            {
+                FixIsStatus();
+            }
+        }
+    }
+
 }
 
 class PickPointDelivery : Delivery
 {
+    private int PinCode;
     /* ... */
     public PickPointDelivery(string adress, string telephon, int order) : base(adress, telephon, order)
     {
+    }
+    public void Status(int pinCode)
+    {
+        Console.Write("Введите пинкод:");
+        PinCode = Convert.ToInt32(Console.ReadLine());
+        if (PinCode == pinCode)
+        {
+            DeliveryType = DeliveryType.Point;
+            FixIsStatus();
+        }
     }
 }
 
 internal class ShopDelivery : Delivery
 {
+    public string NameMenedger;
     /* ... */
     public ShopDelivery(string adress, string telephon, int order) : base(adress, telephon, order)
     {
+    }
+    public void Status(string nameMenedger)
+    {
+        Console.Write("Введите имя менеджера магазина:");
+        NameMenedger = Console.ReadLine();
+        if (NameMenedger == nameMenedger)
+        {
+            DeliveryType = DeliveryType.Shop;
+            FixIsStatus();
+        }
     }
 }
 
@@ -118,7 +174,7 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        ProductClass pr = new ProductClass(14, "Салат", 120.00, 2);
+        ProductClass pr = new ProductClass(14, "Салат", 120.50, 2);
         ProductClass pr2 = new ProductClass(21, "Кофе", 40.00, 1);
         pr.Display();
         pr2.Display();
@@ -128,6 +184,13 @@ internal class Program
         prS.DisplayList();
 
         double summa = prS.GetSumma();
-        Console.WriteLine("Заказ №{0}. Сумма к оплате: {1} руб.",prS.Id, summa);
+        Console.WriteLine("Заказ №{0}. Сумма к оплате: {1} руб.", prS.Id, summa);
+
+        HomeDelivery kv15 = new HomeDelivery("ул.Маяковского", "+79027621205", 12);
+        kv15.DisplayDelivery();
+        kv15.Status(15);
+        kv15.DisplayDelivery();
+
+
     }
 }
