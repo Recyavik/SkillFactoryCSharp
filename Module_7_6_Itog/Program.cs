@@ -84,7 +84,14 @@ abstract class Delivery
     }
     public void DisplayDelivery()
     {
-        WriteLine("Заказ №{0}. Тип:{1}, доставка по адресу: {2} {3} статус доставки: {4}", List, DeliveryType, Address, NumberFlat, IsStatus);
+        if (NumberFlat != null)
+        {
+            WriteLine("Заказ №{0}. Тип:{1}, доставка по адресу: {2}-{3} статус доставки: {4}", List, DeliveryType, Address, NumberFlat, IsStatus);
+        }
+        else
+        {
+            WriteLine("Заказ №{0}. Тип:{1}, доставка по адресу: {2} статус доставки: {3}", List, DeliveryType, Address, IsStatus);
+        }
     }
     public static int GetIntValue()
     {
@@ -180,15 +187,15 @@ internal class Program
         double summa = prS.GetSumma();
         WriteLine("Заказ №{0}. Сумма к оплате: {1} руб.", prS.Id, summa);
 
-        HomeDelivery kv15 = new ("ул.Маяковского", "+79027621205", 15);
+        HomeDelivery kv15 = new ("ул.Маяковского, д.6", "+79027621205", 15);
         kv15.Status(15);
         kv15.DisplayDelivery();
 
-        PickPointDelivery p2625 = new("ул.Маяковского", "+79027621205", 657);
+        PickPointDelivery p2625 = new("ул.Ленина, д.10", "+79027621205", 657);
         p2625.Status(2625);
         p2625.DisplayDelivery();
 
-        ShopDelivery shop = new("ул.Маяковского", "+79027621205", 111);
+        ShopDelivery shop = new("ул.Куйбышева, д.23", "+79027621205", 111);
         shop.Status("Max");
         shop.DisplayDelivery();
     }
