@@ -5,7 +5,7 @@
     {
         static void GetCatalogs()
         {
-            string dirName = @"C:\\"; // Прописываем путь к корневой директории Windows (для MacOS скорее всего тут будет @"/")
+            string dirName = @"C:/"; // Прописываем путь к корневой директории Windows (для MacOS скорее всего тут будет @"/")
             if (Directory.Exists(dirName)) // Проверим, что директория существует
             {
                 Console.WriteLine("Папки:");
