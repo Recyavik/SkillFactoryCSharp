@@ -1,43 +1,26 @@
-﻿namespace Module_8_1_1
+﻿using System;
+using System.IO;
+namespace Module_8_1_1
 {
-    public class Drive
-    {
-        public Drive(string name, long totalSpace, long freeSpace)
-        {
-            Name = name;
-            TotalSpace = totalSpace;
-            FreeSpace = freeSpace;
-        }
-
-        public string Name { get; }
-        public long TotalSpace { get; }
-        public long FreeSpace { get; }
-       enum DriveType {USB, HDD, CD}
-}
-    public class Folder
-    {
-        public Folder(string name)
-        {
-            Name = name;
-        }
-
-        private string Name { get; set; }
-        List<string> Files { get; set; } = new List<string>();
-
-        void AddFile(string name)
-        {
-            if (!Files.Contains(name))
-                Files.Add(name);
-        }
-    }
-
-
-
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            // получим системные диски
+            DriveInfo[] drives = DriveInfo.GetDrives();
+
+            // Пробежимся по дискам и выведем их свойства
+            foreach (DriveInfo drive in drives)
+            {
+                Console.WriteLine($"Название: {drive.Name}");
+                Console.WriteLine($"Тип: {drive.DriveType}");
+                if (drive.IsReady)
+                {
+                    Console.WriteLine($"Объем: {drive.TotalSize / 1024 / 1024} Mб");
+                    Console.WriteLine($"Свободно: {drive.TotalFreeSpace / 1024 / 1024} Мб");
+                    Console.WriteLine($"Метка: {drive.VolumeLabel}");
+                }
+            }
         }
     }
 }
