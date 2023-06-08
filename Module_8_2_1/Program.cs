@@ -22,9 +22,38 @@
                     Console.WriteLine(s);
             }
         }
+
+        private static int GetCountFile()
+        {
+            int count = 0;
+            try
+            {
+                DirectoryInfo dirInfo = new DirectoryInfo(@"C:\\" /* Или С:\\ для Windows */ );
+                if (dirInfo.Exists)
+                {
+                    count = (dirInfo.GetDirectories().Length + dirInfo.GetFiles().Length);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return count;
+        }
+        static void CreateCatalog(string nameCatalog)
+        {
+            DirectoryInfo dirInfo = new DirectoryInfo(@"C:/LessonC#/");
+            if (!dirInfo.Exists)
+                dirInfo.Create();
+
+            dirInfo.CreateSubdirectory(nameCatalog);
+        }
         static void Main(string[] args)
         {
             GetCatalogs(); //   Вызов метода получения директорий
+            int count = GetCountFile(); // Вызов метода получения количества файлов
+            Console.WriteLine(count);
+            CreateCatalog("NewFolderLessonC#");
         }
     }
 }
