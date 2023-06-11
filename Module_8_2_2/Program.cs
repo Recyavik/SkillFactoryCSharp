@@ -1,6 +1,4 @@
-﻿using System.Runtime;
-
-namespace Module_8_2_2
+﻿namespace Module_8_2_2
 {
     internal class Program
     {
@@ -25,7 +23,7 @@ namespace Module_8_2_2
             Console.ReadKey();
             try
             {
-                DirectoryInfo dirInfo = new (@"C:/LessonC#/");
+                DirectoryInfo dirInfo = new(@"C:/LessonC#/");
                 dirInfo.Delete(true); // Удаление со всем содержимым
                 Console.WriteLine("Каталог удален");
             }
