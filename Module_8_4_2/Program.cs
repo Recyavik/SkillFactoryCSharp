@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 namespace Module_8_4_2
 {
@@ -22,6 +23,7 @@ namespace Module_8_4_2
     { 
         public string Name { get; set; }
         public int Age { get; set; }
+        
         public Pet(string name, int age) 
         {
             Name = name;
@@ -36,19 +38,22 @@ namespace Module_8_4_2
             var person = new Pet("Rex", 2);
             Console.WriteLine("Объект создан");
 
-            BinaryFormatter formatter = new();
+            BinaryFormatter formatter = new BinaryFormatter();
             // получаем поток, куда будем записывать сериализованный объект
-            using (var fs = new FileStream("myPets.dat", FileMode.OpenOrCreate))
+            using (FileStream fs = new("myPets.dat", FileMode.OpenOrCreate))
             {
                 formatter.Serialize(fs, person);
                 Console.WriteLine("Объект сериализован");
+                fs.Close();
             }
+            
             // десериализация
             using (var fs = new FileStream("myPets.dat", FileMode.OpenOrCreate))
             {
                 var newPet = (Pet)formatter.Deserialize(fs);
                 Console.WriteLine("Объект десериализован");
                 Console.WriteLine($"Имя: {newPet.Name} --- Возраст: {newPet.Age}");
+                fs.Close();
             }
             Console.ReadLine();
         }
