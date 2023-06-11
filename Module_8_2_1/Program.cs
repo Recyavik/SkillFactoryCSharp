@@ -28,7 +28,7 @@
             int count = 0;
             try
             {
-                DirectoryInfo dirInfo = new DirectoryInfo(@"C:\\" /* Или С:\\ для Windows */ );
+                DirectoryInfo dirInfo = new (@"C:\\" /* Или С:\\ для Windows */ );
                 if (dirInfo.Exists)
                 {
                     count = (dirInfo.GetDirectories().Length + dirInfo.GetFiles().Length);
@@ -54,6 +54,7 @@
             int count = GetCountFile(); // Вызов метода получения количества файлов
             Console.WriteLine(count);
             CreateCatalog("NewFolderLessonC#");
+
         }
     }
 }
