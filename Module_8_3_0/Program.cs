@@ -1,12 +1,15 @@
-﻿namespace Module_8_3_0
+﻿using System;
+using System.IO;
+namespace Module_8_3_0
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            string filePath = @"C:/SkillFactory/Students.txt"; // Укажем путь 
-            if (!File.Exists(filePath)) // Проверим, существует ли файл по данному пути
-            {
+            string filePath = @"C://SkillFactory/Students.txt"; // Укажем путь 
+      if (!File.Exists(filePath)) // Проверим, существует ли файл по данному пути
+      {
+                // Папка должна существовать, а файл не нужен
                 //   Если не существует - создаём и записываем в строку
                 using StreamWriter sw = File.CreateText(filePath);  // Конструкция Using (будет рассмотрена в последующих юнитах)
                 sw.WriteLine("Олег");
