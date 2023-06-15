@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using static System.Console;
 
 namespace Module_8_5_Itog_Task4;
@@ -30,10 +32,14 @@ internal class Program
             WriteLine("Есть такой файл");
             using var rd = File.Open(file.FullName, FileMode.Open);
             using BinaryReader br = new BinaryReader(rd);
+            int i = 1;
             while (br.PeekChar() != -1 && br.ReadString() == "")
             {
                 Name = br.ReadString(); 
                 Group = br.ReadString();
+                Name = Name + "Имя " + Convert.ToString(i) + "-го студента"; 
+                Group = Group + "Группа" + Convert.ToString(i);
+                i += 1;
                 dbl = br.ReadDouble();
                 try
                 {
@@ -43,7 +49,7 @@ internal class Program
                 {
                     DateOfBirth = DateTime.Now;
                 }
-                    WriteLine(Name + " " + Group + " " + DateOfBirth.ToShortDateString());
+                
                 Student st = new(Name, Group, DateOfBirth);
                 Students = Students.Append(st).ToArray();
             }
@@ -54,17 +60,53 @@ internal class Program
         }
 
     }
-    public static void WriteArrayStudent()
+    public static void WriteStudents(string urlPath, Student[] students)
+    {
+        string name;
+        string subPath;
+        for (int i = 0; i < students.Length; i++)
+        {
+            name = students[i].NameS;
+            subPath = urlPath + students[i].GroupS + ".dat";
+            if (!Directory.Exists(urlPath))
+            {
+                Directory.CreateDirectory(urlPath);
+            }
+
+            WriteLine($"Создана группа студентов {subPath}");
+            SaveBin(subPath, name);
+        }
+    }
+    public static void SaveBin(string subPath, string nameStudent) 
+    {
+        if (!File.Exists(subPath))
+        {
+            using (BinaryWriter wr = new BinaryWriter(File.Open(subPath, FileMode.OpenOrCreate)))
+            {
+                wr.Write(nameStudent + "\n");
+            }
+        }
+        else
+        {
+            using (BinaryWriter wr = new BinaryWriter(File.Open(subPath, FileMode.Open)))
+            {
+                WriteLine("Файл уже существует!");
+                wr.Write(nameStudent + "\n");
+            }
+        }
+    }
+    public static void WriteDisplayArrayStudent()
     {
         for (int i = 0; i < Students.Length; i++)
         {
-            WriteLine(Students[i].NameS + Students[i].GroupS + Students[i].DateS.ToShortDateString());
+            WriteLine(Students[i].NameS+ " " + Students[i].GroupS + " " + Students[i].DateS.ToShortDateString());
         }
     }
     static void Main(string[] args)
     {
         ReadStudents(@"Students.dat");
-        WriteArrayStudent();
+        WriteDisplayArrayStudent();
+        WriteStudents("C://SFM4/", Students);
     }
 }
 
