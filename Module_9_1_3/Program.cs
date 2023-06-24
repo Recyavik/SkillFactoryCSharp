@@ -1,4 +1,6 @@
-﻿namespace Module_9_1_3
+﻿using System;
+using static System.Console;
+namespace Module_9_1_3
 {
     internal class Program
     {
@@ -9,28 +11,28 @@
 
         static void Main(string[] args)
         {
+            var result = 0;
             try
             {
-                int result = Division(7, 0);
-                Division('7', 0);
-                Console.WriteLine(result);
+                result = Division(7, 1);
+                result = Division(7, 0);
             }
             catch (Exception ex)
             {
                 if (ex is DivideByZeroException)
                 {
-                    Console.WriteLine("На ноль делить нельзя...");
+                    WriteLine("На ноль делить нельзя...");
                 }
                 else
                 {
-                    Console.WriteLine("Непредвиденная ошибка в приложении");
+                    WriteLine("Непредвиденная ошибка в приложении");
                 }
             }
             finally
             {
-                Console.WriteLine("Блок finally сработал!");
+                WriteLine(result);
             }
-            Console.ReadLine();
+            ReadLine();
 
         }
     }
