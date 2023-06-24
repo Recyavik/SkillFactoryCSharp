@@ -88,9 +88,9 @@ internal class Program
         }
         else
         {
-            using (BinaryWriter wr = new BinaryWriter(File.Open(subPath, FileMode.Open)))
+            using (BinaryWriter wr = new BinaryWriter(File.Open(subPath, FileMode.Append)))
             {
-                WriteLine("Файл уже существует!");
+                WriteLine("Файл уже существует! Произойдет добавление в файл");
                 wr.Write(nameStudent + "\n");
             }
         }
