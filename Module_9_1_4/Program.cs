@@ -44,7 +44,7 @@
             {
                 Method1();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
