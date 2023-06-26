@@ -7,18 +7,21 @@
             public string Model { get; set; }
         }
         class BMW : Car { }
-        delegate Car CarDelegate(string name);
+        delegate void BwmInfo(BMW bwm);
         static void Main(string[] args)
         {
-            CarDelegate carDelegate;
-            carDelegate = BuildBMW; // ковариантность
-            Car c = carDelegate("X6");
-            Console.WriteLine(c.Model);
+            BwmInfo bmwInfo = GetCarInfo; // контравариантность
+            BMW bwm = new BMW
+            {
+                Model = "X6"
+            };
+            bmwInfo(bwm);
             Console.Read();
         }
-        private static BMW BuildBMW(string model)
+
+        private static void GetCarInfo(Car p)
         {
-            return new BMW { Model = model };
+            Console.WriteLine(p.Model);
         }
     }
 }
