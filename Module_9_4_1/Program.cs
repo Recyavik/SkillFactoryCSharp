@@ -1,27 +1,33 @@
 ﻿namespace Module_9_4_1
 {
-    internal class Program
+    class Animal
     {
-        class Car
+        public string Name
         {
-            public string Model { get; set; }
+            get;
+            set;
         }
-        class BMW : Car { }
-        delegate void BwmInfo(BMW bwm);
-        static void Main(string[] args)
-        {
-            BwmInfo bmwInfo = GetCarInfo; // контравариантность
-            BMW bwm = new BMW
-            {
-                Model = "X6"
-            };
-            bmwInfo(bwm);
-            Console.Read();
-        }
+    }
+    class Penguin : Animal { }
 
-        private static void GetCarInfo(Car p)
+    public class Program
+    {
+
+            delegate Animal AnimalDelegate(string name);
+            static void Main(string[] args)
+            {
+                AnimalDelegate animalDelegate;
+                animalDelegate = BuildPeguin;
+                Animal animal = animalDelegate("Josh");
+                Console.WriteLine(animal.Name);
+                Console.Read();
+            }
+        private static Penguin BuildPeguin(string name)
         {
-            Console.WriteLine(p.Model);
+            return new Penguin
+            {
+                Name = name
+            };
         }
     }
 }
