@@ -12,7 +12,7 @@
                 {
                     return "Привет @" + name + " и добро пожаловать на SkillFactory!";
                 };
-                string GreetingsMessage = gd.Invoke("Pranaya");
+                string GreetingsMessage = gd.Invoke("Viktor");
                 Console.WriteLine(GreetingsMessage);
                 Console.ReadKey();
             }
