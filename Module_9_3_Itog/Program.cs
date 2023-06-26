@@ -1,13 +1,9 @@
-﻿using System.Xml.Linq;
-using System.Collections.Generic;
-using static Module_9_3_Itog.Program;
-
-namespace Module_9_3_Itog
+﻿namespace Module_9_3_Itog
 {
     public class Program
     {
         public delegate bool EligibleToPromotion(Employee EmployeeToPromotion);
-        static void Main(string[] args) 
+        static void Main(string[] args)
         {
             Employee empl1 = new Employee()
             {
@@ -39,17 +35,17 @@ namespace Module_9_3_Itog
             EligibleToPromotion eligible = Promote;
             Employee.PromoteEmployee(listEmployees, eligible);
         }
-        public static bool Promote(Employee employee) 
-        { 
-            if (employee.Salary > 10000) 
+        public static bool Promote(Employee employee)
+        {
+            if (employee.Salary > 10000)
             {
                 return true;
             }
-            else 
+            else
             {
                 return false;
             }
-                
+
         }
     }
     public class Employee
@@ -61,10 +57,10 @@ namespace Module_9_3_Itog
 
         public static void PromoteEmployee(List<Employee> listEmployees, Program.EligibleToPromotion IsEmployeeEligible)
         {
-            foreach(Employee employee in listEmployees)
+            foreach (Employee employee in listEmployees)
             {
-                if (IsEmployeeEligible(employee)) 
-                { 
+                if (IsEmployeeEligible(employee))
+                {
                     Console.WriteLine($"{employee.Name}, Уходит на повышение");
                 }
             }
