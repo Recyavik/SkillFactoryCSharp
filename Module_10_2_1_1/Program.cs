@@ -4,25 +4,24 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-        }
+            Writer writer = new Writer();
 
-        public interface ICalculator
+            ((IWriter)writer).Write();
+
+            Console.ReadKey();
+        }
+    }
+
+    public class Writer : IWriter
+    {
+        void IWriter.Write()
         {
-            // void Solve(int number);  
-            void Solve(int numberOne, int numberTwo);
+            throw new NotImplementedException();
         }
-        public class BaseCalculator : ICalculator 
-        { 
-            public void ICalculator.Solve(int number) 
-            {
+    }
 
-            }
-            public void ICalculator.Solve(int numberOne, int numberTwo)
-            {
-
-            }
-            
-        }
+    public interface IWriter
+    {
+        void Write();
     }
 }
