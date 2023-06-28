@@ -13,7 +13,7 @@
             banaryFile.ReadFile();
             banaryFile.OpenBinaryFile();
 
-            fileInfo.Seach("Строка поиска");
+            fileInfo.Search("Строка поиска");
 
             Console.ReadLine();
         }
@@ -43,7 +43,7 @@
             Console.WriteLine("Читаем бинарный файл");
         }
 
-        public void Seach(string text)
+        public void Search(string text)
         {
             Console.WriteLine("Начался поиск текста в файле");
         }
