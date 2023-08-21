@@ -1,18 +1,37 @@
 ﻿using Telegram.Bot;
+using Telegram.Bot.Args;
 
 namespace TelegramBot
 {
-    internal class Program
+    public class BotWorker
     {
-        public static class BotCredentials
+        private ITelegramBotClient botClient;
+        private BotMessageLogic logic;
+
+        public void Inizalize()
         {
-            public static readonly string BotToken = "6128456325:AAGTR7g68wJ3S8kCfv5tjSBW3bDNBaMWXjg";
+            botClient = new TelegramBotClient(BotCredentials.BotToken);
+            logic = new BotMessageLogic(botClient);
+
         }
-        static void Main(string[] args)
+
+        public void Start()
         {
-            var botClient = new TelegramBotClient(BotCredentials.BotToken);
-            var me = botClient.GetMeAsync().Result;
-            Console.WriteLine("Привет! Меня зовут {0}.", me.FirstName);
+            botClient.OnMessage += Bot_OnMessage;
+            botClient.StartReceiving();
+        }
+
+        public void Stop()
+        {
+            botClient.StopReceiving();
+        }
+
+        private async void Bot_OnMessage(object sender, MessageEventArgs e)
+        {
+            if (e.Message != null)
+            {
+                await logic.Response(e);
+            }
         }
     }
 }
