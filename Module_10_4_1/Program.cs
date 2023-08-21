@@ -13,17 +13,17 @@
     {
 
     }
-    public class Bike: Car // Проверка контравариантности
-    { 
-    
+    public class Bike : Car // Проверка контравариантности
+    {
+
     }
     public class House
     {
 
     }
-    public class Garage: House // Проверка ковариантности
-    { 
-    
+    public class Garage : House // Проверка ковариантности
+    {
+
     }
     public interface IGaragManager<in T, out Z>
     {
